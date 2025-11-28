@@ -21,3 +21,30 @@ client :
 - rendre visible les diffèrent menu ('mes information', 'paramètre' ,'programme de fidélité')
 
 faire en sort que la musique se poursuivent d'une page a l'autre, et qu'elle ne recommence pas au debut.
+
+
+
+
+
+
+identification :
+- voir pour le fond dans identification (musique + couleur )
+- retirer 'retour a l'accueil' ou modifier car pour commander il faut avoir un compte ou créée un compte
+- dans 'connexion' voir si il faut les logo des diffèrent réseau social
+- ajouter un bouton 'mot de passe oublier'
+
+index :
+- mettre en forme en fonction de la taille de l'écran car sur mobile liste de commande ne colonne, mais sur PC, elle reste en colonne et ne semble pas s'adapter a la taille de l'écran;
+- ajouter dans le coin supérieur gauche une icone qui permet d'ouvrir un menu dans lequel ont peut se rendre dans la partie 'client'
+
+recap :
+- fond + musique
+- dessign pour que cela ressemble a un facture.
+- encart pour entrer un code de réduction
+- barre de progression qui permet de signaler le prochain bonus obtenable quand on a atteint une certaine somme dépenser (ref holly)
+- indiquer plusieurs moyen de payement (cb, pommepay, gplay, vista, …)
+- 
+
+client :
+- quand on passe ne mode sombre, modifier le bouton pour qu'il indique 'mode lumière /lumineux'
+- rendre visible les diffèrent menu ('mes information', 'paramètre' ,'programme de fidélité')
