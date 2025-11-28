@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Commander une Pizza</title>
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="index.css"> <!-- ou identification.css etc -->
+    <script>
+        function redirigerVersRecapitulatif(event) {
+            // Empêcher l'envoi du formulaire
+            event.preventDefault();
+
+            // Récupérer les valeurs du formulaire
+            var quantityMargarita = document.getElementById("quantityMargarita").value;
+            var quantityPepperoni = document.getElementById("quantityPepperoni").value;
+            var quantityVegetarienne = document.getElementById("quantityVegetarienne").value;
+            var quantityQuattroformaggi = document.getElementById("quantityQuattroformaggi").value;
+
+            // Créer une URL avec les données encodées
+            var url = 'recap.html?' +
+                'quantityMargarita=' + encodeURIComponent(quantityMargarita) +
+                '&quantityPepperoni=' + encodeURIComponent(quantityPepperoni) +
+                '&quantityVegetarienne=' + encodeURIComponent(quantityVegetarienne) +
+                '&quantityQuattroformaggi=' + encodeURIComponent(quantityQuattroformaggi);
+
+            // Rediriger vers la page de récapitulatif
+            window.location.href = url;
+
+        }
+
+        function ajusterQuantite(id, operation) {
+            var quantityInput = document.getElementById(id);
+            var currentValue = parseInt(quantityInput.value);
+            if (operation === "plus" && currentValue < 10) {
+                quantityInput.value = currentValue + 1;
+            } else if (operation === "moins" && currentValue > 0) {
+                quantityInput.value = currentValue - 1;
+            }
+        }
+    </script>
+        
+    <audio id="musiqueFond" autoplay loop>
+    <source src="musiqueFond.mp3" type="audio/mpeg">
+    Votre navigateur ne supporte pas l’audio HTML5.
+    </audio>
+
+    <div class="volume-control">
+    <label for="volume">🔊 Volume : </label>
+    <input type="range" id="volume" min="10" max="100" step="1" value="50">
+    </div>
+    
+</head>
+<body>
+
+    <header>
+        <h1>Commandez votre Pizza !</h1>
+    </header>
+
+    <!-- Parti central du site -->
+    <div class="container">
+        <h2>Formulaire de Commande</h2>
+        <form id="pizzaForm" onsubmit="redirigerVersRecapitulatif(event)">
+            
+            <!-- Pizza Margarita -->
+            <div class="pizza-selection">
+                <img src="margarita.jpg" alt="Pizza Margarita">
+                <div class="pizza-details">
+                    <h3>Pizza Margarita</h3>
+                    <p>Tomates, fromage, sauce tomate</p>
+                    <div class="quantity-controls">
+                        <button type="button" onclick="ajusterQuantite('quantityMargarita', 'moins')">-</button>
+                        <input type="number" id="quantityMargarita" name="quantityMargarita" value="0" min="0" max="10" readonly>
+                        <button type="button" onclick="ajusterQuantite('quantityMargarita', 'plus')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pizza Pepperoni -->
+            <div class="pizza-selection">
+                <img src="pepperoni.jpg" alt="Pizza Pepperoni">
+                <div class="pizza-details">
+                    <h3>Pizza Pepperoni</h3>
+                    <p>Pepperoni, fromage, sauce tomate</p>
+                    <div class="quantity-controls">
+                        <button type="button" onclick="ajusterQuantite('quantityPepperoni', 'moins')">-</button>
+                        <input type="number" id="quantityPepperoni" name="quantityPepperoni" value="0" min="0" max="10" readonly>
+                        <button type="button" onclick="ajusterQuantite('quantityPepperoni', 'plus')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pizza Végétarienne -->
+            <div class="pizza-selection">
+                <img src="vagetarienne.jpg" alt="Pizza Végétarienne">
+                <div class="pizza-details">
+                    <h3>Pizza Végétarienne</h3>
+                    <p>Légumes grillés, fromage, sauce tomate</p>
+                    <div class="quantity-controls">
+                        <button type="button" onclick="ajusterQuantite('quantityVegetarienne', 'moins')">-</button>
+                        <input type="number" id="quantityVegetarienne" name="quantityVegetarienne" value="0" min="0" max="10" readonly>
+                        <button type="button" onclick="ajusterQuantite('quantityVegetarienne', 'plus')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pizza Quattro Formaggi -->
+            <div class="pizza-selection">
+                <img src="quattroformaggi.jpg" alt="Pizza Quattro Formaggi">
+                <div class="pizza-details">
+                    <h3>Pizza Quattro Formaggi</h3>
+                    <p>Fromages divers, sauce tomate</p>
+                    <div class="quantity-controls">
+                        <button type="button" onclick="ajusterQuantite('quantityQuattroformaggi', 'moins')">-</button>
+                        <input type="number" id="quantityQuattroformaggi" name="quantityQuattroformaggi" value="0" min="0" max="10" readonly>
+                        <button type="button" onclick="ajusterQuantite('quantityQuattroformaggi', 'plus')">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bouton de soumission -->
+            <div class="form-section">
+                <button type="submit">Commander</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 PizzaExpress. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+    const audio = document.getElementById("musiqueFond");
+    const volumeSlider = document.getElementById("volume");
+
+    // Volume par défaut à 50%
+    audio.volume = 0.5;
+
+    volumeSlider.addEventListener("input", () => {
+    audio.volume = volumeSlider.value / 100;
+
+    });
+    </script>
+
+</body>
+</html>

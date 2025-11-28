@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Récapitulatif de Commande</title>
+    <link rel="stylesheet" href="general.css">
+
+    <script>
+        // Fonction pour récupérer les paramètres de l'URL et afficher le récapitulatif
+        function afficherRecapitulatif() {
+            // Récupérer les paramètres de l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Récupérer les quantités de chaque pizza
+            var quantityMargarita = urlParams.get('quantityMargarita');
+            var quantityPepperoni = urlParams.get('quantityPepperoni');
+            var quantityVegetarienne = urlParams.get('quantityVegetarienne');
+            var quantityQuattroformaggi = urlParams.get('quantityQuattroformaggi');
+            
+            // Récupérer les informations personnelles
+            var name = urlParams.get('name');
+            var email = urlParams.get('email');
+
+            // Afficher les informations dans la page
+            document.getElementById("nameDisplay").textContent = name;
+            document.getElementById("emailDisplay").textContent = email;
+
+            // Créer un récapitulatif des pizzas
+            var recapPizza = '';
+
+            if (quantityMargarita > 0) {
+                recapPizza += `<p>Pizza Margarita : ${quantityMargarita} x</p>`;
+            }
+            if (quantityPepperoni > 0) {
+                recapPizza += `<p>Pizza Pepperoni : ${quantityPepperoni} x</p>`;
+            }
+            if (quantityVegetarienne > 0) {
+                recapPizza += `<p>Pizza Végétarienne : ${quantityVegetarienne} x</p>`;
+            }
+            if (quantityQuattroformaggi > 0) {
+                recapPizza += `<p>Pizza Quattro Formaggi : ${quantityQuattroformaggi} x</p>`;
+            }
+
+            document.getElementById("recapPizza").innerHTML = recapPizza;
+        }
+    </script>
+
+    <audio id="musiqueFond" autoplay loop>
+    <source src="musiqueFond.mp3" type="audio/mpeg">
+    Votre navigateur ne supporte pas l’audio HTML5.
+    </audio>
+
+    <div class="volume-control">
+    <label for="volume">🔊 Volume : </label>
+    <input type="range" id="volume" min="10" max="100" step="1" value="50">
+    </div>
+    
+</head>
+
+<body onload="afficherRecapitulatif()">
+
+    <header>
+        <h1>Récapitulatif de votre commande</h1>
+    </header>
+
+    <div class="container">
+        <h2>Merci pour votre commande, <span id="nameDisplay"></span> !</h2>
+        
+        <p><strong>Email :</strong> <span id="emailDisplay"></span></p>
+
+        <div id="recapPizza">
+            <!-- Les pizzas commandées seront affichées ici -->
+        </div>
+
+        <h3>Total de votre commande</h3>
+        <p>Les informations sur le prix peuvent être ajoutées ici, selon les prix de chaque pizza.</p>
+
+        <div class="form-section">
+            <button onclick="window.location.href='payment.html'">Procéder au paiement</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 PizzaExpress. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+    const audio = document.getElementById("musiqueFond");
+    const volumeSlider = document.getElementById("volume");
+
+    // Volume par défaut à 50%
+    audio.volume = 0.5;
+
+    volumeSlider.addEventListener("input", () => {
+    audio.volume = volumeSlider.value / 100;
+
+    });
+    </script>
+
+</body>
+</html>

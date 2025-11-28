@@ -1,0 +1,108 @@
+/* ================================
+   STYLE GLOBAL
+   ================================ */
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+/* Conteneur principal centré */
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* ================================
+   FORMULAIRES INSCRIPTION/CONNEXION
+   ================================ */
+form {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+form input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+form button {
+  padding: 10px 15px;
+  background-color: #009246; /* vert italien */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+form button:hover {
+  background-color: #ce2b37; /* rouge italien */
+}
+
+/* Message de retour (connexion réussie ou erreur) */
+#message {
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ================================
+   CONNEXION VIA RÉSEAUX SOCIAUX
+   ================================ */
+
+/* Conteneur des boutons sociaux */
+.social-login {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Style de base commun à tous les boutons */
+.social {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  width: 45%;
+}
+
+/* Couleurs spécifiques à chaque service */
+.social.facebook { background-color: #3b5998; }   /* bleu Facebook */
+.social.google   { background-color: #db4437; }   /* rouge Google */
+.social.twitter  { background-color: #1da1f2; }   /* bleu Twitter (X) */
+.social.instagram{ background-color: #e1306c; }   /* rose Instagram */
+
+/* Effet au survol */
+.social:hover { 
+  opacity: 0.8;
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+}
+

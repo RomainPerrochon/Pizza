@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mastermind</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    input {
+      width: 40px;
+      text-align: center;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎯 Jeu Mastermind</h1>
+  <p>Devine la combinaison secrète (4 chiffres entre 1 et 4)</p>
+
+  <div>
+    <input type="number" id="guess1" min="1" max="4">
+    <input type="number" id="guess2" min="1" max="4">
+    <input type="number" id="guess3" min="1" max="4">
+    <input type="number" id="guess4" min="1" max="4">
+    <button onclick="checkGuess()">Valider</button>
+  </div>
+
+  <div id="result"></div>
+  <div id="history"></div>
+
+  <script>
+    let secret = [];
+    let attempts = 0;
+    const maxAttempts = 10;
+
+    function generateSecret() {
+      secret = [];
+      for (let i = 0; i < 4; i++) {
+        secret.push(Math.floor(Math.random() * 4) + 1);
+      }
+      console.log("Code secret :", secret); // Pour tricher 
+    }
+
+    function checkGuess() {
+      if (attempts >= maxAttempts) {
+        document.getElementById("result").innerText = " Partie terminée. Trop d'essais.";
+        return;
+      }
+
+      const guess = [
+        parseInt(document.getElementById("guess1").value),
+        parseInt(document.getElementById("guess2").value),
+        parseInt(document.getElementById("guess3").value),
+        parseInt(document.getElementById("guess4").value)
+      ];
+
+      if (guess.some(num => isNaN(num) || num < 1 || num > 4)) {
+        alert(" Entrez 4 chiffres entre 1 et 4.");
+        return;
+      }
+
+      attempts++;
+      let bien = 0;
+      let mal = 0;
+      let usedSecret = [false, false, false, false];
+      let usedGuess = [false, false, false, false];
+
+      // Bien placés
+      for (let i = 0; i < 4; i++) {
+        if (guess[i] === secret[i]) {
+          bien++;
+          usedSecret[i] = true;
+          usedGuess[i] = true;
+        }
+      }
+
+      // Mal placés
+      for (let i = 0; i < 4; i++) {
+        if (!usedGuess[i]) {
+          for (let j = 0; j < 4; j++) {
+            if (!usedSecret[j] && guess[i] === secret[j]) {
+              mal++;
+              usedSecret[j] = true;
+              break;
+            }
+          }
+        }
+      }
+
+      const resultText = `Essai ${attempts} : ${guess.join(" - ")}<br> Bien placés : ${bien} |  Mal placés : ${mal}`;
+      document.getElementById("result").innerHTML = resultText;
+
+      const history = document.getElementById("history");
+      history.innerHTML += `<p>${resultText}</p>`;
+
+      if (bien === 4) {
+        document.getElementById("result").innerHTML += "<br> Bravo ! Tu as trouvé le code.";
+      } else if (attempts === maxAttempts) {
+        document.getElementById("result").innerHTML += `<br> Partie perdue. Le code était : ${secret.join(" - ")}`;
+      }
+    }
+
+    generateSecret();
+  </script>
+
+</body>
+</html>

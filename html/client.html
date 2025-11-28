@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Profil Client</title>
+  <link rel="stylesheet" href="general.css">
+  <link rel="stylesheet" href="client.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <header>
+    <h1>👤 Mon Profil</h1>
+    <p><a href="index.html">⬅ Retour à l'accueil</a></p>
+  </header>
+
+  <div class="container">
+    <nav class="menu-client">
+      <ul>
+        <li><a href="#">🛒 Mon panier</a></li>
+        <li><a href="#">👤 Mes informations</a></li>
+        <li><a href="#">⚙️ Paramètres</a></li>
+        <li><a href="#" onclick="toggleDarkMode()">🌙 Mode sombre</a></li>
+        <li><a href="#">🎁 Programme fidélité</a></li>
+        <li><a href="#" onclick="logout()">🚪 Déconnexion</a></li>
+      </ul>
+    </nav>
+
+    <section id="content">
+      <h2>Bienvenue sur votre espace client</h2>
+      <p>Vous pourrez gérer vos informations et suivre vos commandes ici.</p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 PizzaExpress</p>
+  </footer>
+
+  <script>
+    // Récupérer l'utilisateur connecté
+    const email = localStorage.getItem("sessionUser");
+    if (email) {
+      const user = JSON.parse(localStorage.getItem(email));
+      if (user) {
+        document.querySelector("#content h2").textContent = `Bienvenue ${user.name}`;
+      }
+    }
+
+    // Déconnexion
+    function logout() {
+      localStorage.removeItem("sessionUser");
+      window.location.href = "identification.html";
+    }
+
+    // Mode sombre
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+</body>
+</html>

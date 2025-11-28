@@ -1,0 +1,113 @@
+/* ================================
+   STYLE PAGE PROMOTIONS
+   ================================ */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+}
+
+header {
+  background: #333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+header a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+
+/* Conteneur principal */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Bloc publicité */
+.pub {
+  background: yellow;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  margin: 15px 0;
+  border: 2px dashed red;
+  border-radius: 5px;
+}
+
+/* Bloc promotions */
+.promo {
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.promo h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.promo-item {
+  margin: 10px 0;
+  padding: 10px;
+  background: #fff8e1;
+  border-left: 5px solid orange;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+/* Effet hover sur les promos */
+.promo-item:hover {
+  transform: scale(1.02);
+  background: #ffe8b3;
+}
+
+/* Footer */
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+/* ================================
+   MODE SOMBRE
+   ================================ */
+body.dark {
+  background: #1a1a1a;
+  color: #f5f5f5;
+}
+
+body.dark header {
+  background: #000;
+}
+
+body.dark .container {
+  background: #222;
+  color: #f5f5f5;
+}
+
+body.dark .promo {
+  background: #333;
+  border-color: #555;
+}
+
+body.dark .promo-item {
+  background: #444;
+  border-left-color: #888;
+}

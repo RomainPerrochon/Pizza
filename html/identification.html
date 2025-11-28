@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Inscription / Connexion</title>
+  <link rel="stylesheet" href="general.css">
+  <link rel="stylesheet" href="identification.css">
+</head>
+<body>
+
+  <header>
+    <h1>Bienvenue sur PizzaExpress 🍕</h1>
+  </header>
+
+  <div class="container">
+    <!-- FORMULAIRE INSCRIPTION -->
+    <div id="registerSection">
+      <h2>Inscription</h2>
+      <form id="registerForm">
+        <input type="text" id="regName" placeholder="Nom" required>
+        <input type="email" id="regEmail" placeholder="Email" required>
+        <input type="password" id="regPassword" placeholder="Mot de passe" required>
+        <button type="submit">S'inscrire</button>
+      </form>
+      <p>Déjà inscrit ? 
+        <button type="button" onclick="showLogin()">Se connecter</button>
+      </p>
+    </div>
+
+    <!-- FORMULAIRE CONNEXION -->
+    <div id="loginSection" style="display: none;">
+      <h2>Connexion</h2>
+      <form id="loginForm">
+        <input type="email" id="logEmail" placeholder="Email" required>
+        <input type="password" id="logPassword" placeholder="Mot de passe" required>
+        <button type="submit">Se connecter</button>
+        <p><a href="#" onclick="forgotPassword()">Mot de passe oublié ?</a></p>
+      </form>
+
+      <!-- Connexions sociales (simulées) -->
+      <div class="social-login">
+        <p>Ou se connecter avec :</p>
+        <button class="social facebook">📘 Facebook</button>
+        <button class="social google">🟢 Google</button>
+        <button class="social twitter">🐦 X (Twitter)</button>
+        <button class="social instagram">📸 Instagram</button>
+      </div>
+
+      <p>Pas encore de compte ? 
+        <button type="button" onclick="showRegister()">S'inscrire</button>
+      </p>
+    </div>
+
+    <p id="message"></p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 PizzaExpress</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="general.js"></script>
+  <script>
+    // --- Switch entre inscription et connexion ---
+    function showLogin() {
+      document.getElementById("registerSection").style.display = "none";
+      document.getElementById("loginSection").style.display = "block";
+    }
+    function showRegister() {
+      document.getElementById("loginSection").style.display = "none";
+      document.getElementById("registerSection").style.display = "block";
+    }
+
+    // --- Inscription ---
+    document.getElementById("registerForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("regName").value;
+      const email = document.getElementById("regEmail").value;
+      const password = document.getElementById("regPassword").value;
+      localStorage.setItem(email, JSON.stringify({ name, password }));
+      document.getElementById("message").textContent = "✅ Compte créé avec succès !";
+    });
+
+    // --- Connexion ---
+    document.getElementById("loginForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("logEmail").value;
+      const password = document.getElementById("logPassword").value;
+      const user = JSON.parse(localStorage.getItem(email));
+      if (user && user.password === password) {
+        document.getElementById("message").textContent = `👋 Bienvenue ${user.name} !`;
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 1500);
+      } else {
+        document.getElementById("message").textContent = "❌ Email ou mot de passe incorrect.";
+      }
+    });
+  </script>
+</body>
+</html>
